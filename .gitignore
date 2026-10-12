@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# builds
+dist/
+dist-bundle/
+.parcel-cache/
+bundle.html
+
+# logs / os / editor
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# local env
+*.local
