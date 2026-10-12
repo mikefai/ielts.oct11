@@ -99,7 +99,7 @@ export function ReadingHome({ go, goWriting, scores }: { go: (s: RSection) => vo
           { id: "rtypes" as RSection, t: "All 10 question types", d: "What each type asks, exact method, traps, and time per question.", c: "Study the types" },
           { id: "rheadings" as RSection, t: "Match Headings lab", d: "The most-feared type, deconstructed: 6-step method + 2 full drills.", c: "Master headings" },
           { id: "rex" as RSection, t: "Exercises", d: "T/F/NG, Y/N/NG, endings, summary, features — all auto-marked.", c: "Do drills" },
-          { id: "rmock" as RSection, t: "Mock test", d: "One full passage, 13 questions, 20:00 timer, answer key + band scale.", c: "Start mock" },
+          { id: "rmock" as RSection, t: "Mock test", d: "One full passage, 14 questions, 20:00 timer, answer key + band scale.", c: "Start mock" },
         ].map(c => (
           <Card key={c.id} className="flex flex-col border-stone-200">
             <CardHeader><CardTitle className="font-serif text-lg">{c.t}</CardTitle><CardDescription>{c.d}</CardDescription></CardHeader>
@@ -161,27 +161,29 @@ export function ReadingTypesView() {
 
 // ================= MATCH HEADINGS LAB =================
 const NAP_HEADINGS = [
-  "i. A cultural shift in attitudes to rest",
-  "ii. Evidence from aviation research",
-  "iii. Employers embrace daytime sleep",
-  "iv. The drawbacks of oversleeping",
-  "v. Guidelines for an effective nap",
-  "vi. The link between diet and night-time sleep",
-  "vii. Sleep patterns in non-industrial societies",
+  "i. The scale of a squandered resource",
+  "ii. Refuse richer than rock",
+  "iii. Why extraction resists easy solutions",
+  "iv. Microbes as metallurgists",
+  "v. Law and prices as drivers",
+  "vi. Recovery alone cannot satisfy demand",
+  "vii. The invention of the smartphone",
+  "viii. Health effects of informal recycling",
 ];
 const NAP_PARAS = [
-  { label: "Paragraph A", text: "For most of the twentieth century, dozing in daylight was treated as a moral failing. Managers equated visible tiredness with laziness, and employees who admitted to napping risked their reputation. Sleep, in the industrial mindset, belonged strictly to the night.", answer: 0, why: "Whole paragraph = old attitude (moral failing, laziness) — heading i summarises this idea. Heading vii mentions 'societies' but the paragraph is about attitudes, not sleep patterns." },
-  { label: "Paragraph B", text: "The turning point came from an unlikely source: the cockpit. In a NASA study, pilots allowed a 26-minute nap showed a 34% improvement in performance and a 54% rise in alertness. The effect was so large that aviation regulators began mandating rest breaks on long-haul flights.", answer: 1, why: "The paragraph's point is the NASA/pilot study — heading ii. 'Performance' appears but heading iv (drawbacks) is wrong: this paragraph is positive evidence." },
-  { label: "Paragraph C", text: "Businesses were quick to commercialise the findings. Technology firms installed silent pods, and some factories now schedule a twenty-minute 'recharge break' after lunch. Firms report fewer afternoon errors, though few publish hard data.", answer: 2, why: "Topic = what employers do now (pods, scheduled breaks) — heading iii. Note 'afternoon errors' is a detail, not the main idea." },
-  { label: "Paragraph D", text: "Longer naps, however, carry a cost. Sleeping beyond thirty minutes pushes the brain into deep sleep, and waking from it produces grogginess, impaired memory and worse performance than before — a state researchers call sleep inertia.", answer: 3, why: "Main idea = the cost of long naps — heading iv. 'Thirty minutes' also appears in napping advice, but this paragraph is about harm, not guidelines." },
-  { label: "Paragraph E", text: "Specialists therefore recommend keeping naps short and early: ten to twenty minutes, before 3 p.m., in a dark, cool room, followed by exposure to daylight. Caffeine just before lying down can even sharpen the wake-up, they add.", answer: 4, why: "A list of recommendations = guidelines — heading v. It mentions 'thirty minutes'-type detail too, but the paragraph's function is advice." },
+  { label: "Paragraph A", text: "Humanity now discards more than 50 million tonnes of electrical goods each year, a flow growing three times faster than the population itself. According to the Global E-waste Monitor, barely 17% of this stream is formally recycled; the remainder is landfilled, incinerated, or exported to informal yards where recovery is crude and hazardous. Every tonne abandoned in this way carries off quantities of copper, silver and rare earths that took geological ages to concentrate.", answer: 0, why: "The paragraph quantifies the torrent (50Mt, 17%, three times faster) — heading i. 'Hazardous' tempts heading viii, but health is one clause, not the paragraph's subject." },
+  { label: "Paragraph B", text: "The paradox is that this rubbish is, gram for gram, among the richest ores on Earth. A tonne of discarded smartphones holds roughly 300 times more gold than a tonne of typical gold ore, alongside concentrations of palladium that conventional miners would celebrate. Researchers have accordingly begun to describe cities as 'urban mines' whose grades exceed anything remaining in natural deposits.", answer: 1, why: "The whole paragraph develops one comparison — waste versus ore grades — heading ii. Figures (300 times) support the comparison; they are not the main idea themselves." },
+  { label: "Paragraph C", text: "Liberating these metals, however, is formidably complex. Contemporary devices fuse dozens of elements into millimetre-scale assemblies: shredding them yields a mixed granulate from which separation is costly, while manual disassembly is labour-intensive and exposes workers to lead and brominated flame retardants. Smelters prepared to accept such feedstock are few, and they charge accordingly.", answer: 2, why: "Three barriers (costly separation, hazardous labour, scarce smelters) = why extraction is hard — heading iii. Lead exposure tempts heading viii, but it is one barrier among three." },
+  { label: "Paragraph D", text: "Biology may supply a cleaner route. Certain bacteria and fungi naturally leach copper and gold from crushed circuit boards, operating at room temperature without the furnaces and acids of conventional metallurgy. The process is markedly slower — weeks rather than hours — yet pilot facilities in Finland and Japan have demonstrated it can compete where energy is dear or environmental rules are stringent.", answer: 3, why: "Topic = organisms recovering metals — heading iv. Finland/Japan pilots are supporting evidence, and 'slower' is a concession, not the main idea." },
+  { label: "Paragraph E", text: "Policy, as much as technology, now propels recovery. Landfill bans across the European Union and extended producer-responsibility laws in Japan compel manufacturers to finance collection networks, while commodity markets furnish the parallel incentive: when lithium prices spiked in 2022, investment in battery recycling tripled within eighteen months, only to stall as prices collapsed again.", answer: 4, why: "Two drivers — regulation and markets — heading v. The lithium boom-bust tempts heading vi (demand), but the paragraph is about what drives recycling, not its limits." },
+  { label: "Paragraph F", text: "Even optimists concede recovery faces strict ceilings. Surveys repeatedly find households hoarding obsolete handsets — an estimated 16 billion sit idle in drawers worldwide — so collection rates languish below 25% in most economies. And with metals demand projected to double by 2040, analysts calculate that recycling, even perfectly executed, could furnish at most a third of requirements; primary mining, they conclude, remains unavoidable.", answer: 5, why: "Hoarding and the one-third ceiling both serve one verdict — recycling alone falls short — heading vi. Drawer-hoarding is evidence for the verdict, not a separate topic." },
 ];
 
 const TRAP_QUIZ: MCQ[] = [
-  { q: "A heading shares three exact words with a paragraph but describes only its final example. You should…", options: ["choose it — word match means correct", "reject it — headings summarise the whole paragraph, not one detail", "choose it if you are short on time"], answer: 1, explain: "Classic distractor design. The test writers plant shared vocabulary in wrong headings on purpose." },
-  { q: "Two headings both seem to fit paragraph C. Best move?", options: ["Pick the first one and move on", "Match all easy paragraphs first, cross headings off, return with fewer options", "Always pick the longer heading"], answer: 1, explain: "Elimination is the core headings skill. Easy-first shrinks the choice set for hard paragraphs." },
-  { q: "Where is a paragraph's main idea MOST often found?", options: ["In the middle sentence", "In the first 1–2 sentences and the last sentence", "Spread evenly — every sentence matters equally"], answer: 1, explain: "Academic paragraphs are topic-sentence led. Skim first two + last one before deciding." },
-  { q: "'The link between diet and night-time sleep' (heading vi) vs a paragraph mentioning 'lunch breaks'. This heading is…", options: ["correct — lunch is diet", "a distractor — lunch break ≠ diet research; topic mismatch", "correct if no better heading exists"], answer: 1, explain: "'Lunch' here means timing of the break, not nutrition. Distractors exploit loose word association." },
+  { q: "A paragraph opens with evidence FOR urban mining, then 'Nevertheless…' reverses to its limits. The heading should reflect…", options: ["the opening evidence — first sentences rule", "the paragraph's overall direction after the turn", "whichever half shares more words with a heading"], answer: 1, explain: "Contrast structures pivot on 'however/nevertheless'. The main idea is where the paragraph ENDS UP, not where it starts — a favourite Band 7+ trap." },
+  { q: "A statement says 'most researchers agree'. The text says 'several researchers argue'. This is…", options: ["TRUE — several means most", "FALSE — quantifier mismatch: several ≠ most", "NOT GIVEN — we can't count researchers"], answer: 1, explain: "'Most' is a claim about the majority; 'several' doesn't support it. Quantifier shifts (some/most/all) flip answers — always compare them exactly." },
+  { q: "Two headings fit different HALVES of one paragraph (problem + solution). You should…", options: ["pick the problem heading — problems come first", "pick whichever half is longer", "decide which half the paragraph's conclusion serves, and check the other paragraphs first"], answer: 2, explain: "Match the paragraph's FUNCTION. And solve easy paragraphs first — elimination often resolves the dilemma for free." },
+  { q: "The instructions say 'Choose the correct letter A–G'. You…", options: ["may reuse a letter if two paragraphs match it", "must use each letter exactly once, leaving spares unused", "should leave blanks rather than guess"], answer: 1, explain: "Unless told otherwise, each heading is used once and some never. Never leave blanks — there is no penalty for wrong answers." },
 ];
 
 function HeadingsMatchDrill({ onDone }: { onDone: (key: string, score: number) => void }) {
@@ -193,8 +195,8 @@ function HeadingsMatchDrill({ onDone }: { onDone: (key: string, score: number) =
   }, [sel]);
   return (
     <Card className="border-stone-200">
-      <CardHeader><CardTitle className="text-lg">Drill A · Match the 5 paragraphs</CardTitle>
-        <CardDescription>Passage: "The Power of Napping". Two headings are distractors and must be left unused.</CardDescription></CardHeader>
+      <CardHeader><CardTitle className="text-lg">Drill A · Match the 6 paragraphs</CardTitle>
+        <CardDescription>Passage: "Urban Mining: Harvesting Metals from Waste". Two headings are distractors and must be left unused. Paragraphs are exam length — watch for detail traps.</CardDescription></CardHeader>
       <CardContent className="space-y-3">
         <div className="rounded-md bg-stone-100 p-2.5 text-sm"><strong>Heading bank:</strong><ul className="mt-1 space-y-0.5">{NAP_HEADINGS.map(h => <li key={h}>{h}</li>)}</ul></div>
         {NAP_PARAS.map((p, i) => (
@@ -214,7 +216,7 @@ function HeadingsMatchDrill({ onDone }: { onDone: (key: string, score: number) =
         <div className="flex items-center gap-2">
           {!checked
             ? <Button disabled={Object.keys(sel).length < NAP_PARAS.length} onClick={() => { setChecked(true); onDone("Headings drill", score); }} className="bg-stone-900">Check headings</Button>
-            : <><Badge className={score >= 80 ? "bg-teal-700" : "bg-amber-600"}>{score}% ({NAP_PARAS.filter((p, i) => sel[i] === p.answer).length}/5)</Badge>
+            : <><Badge className={score >= 80 ? "bg-teal-700" : "bg-amber-600"}>{score}% ({NAP_PARAS.filter((p, i) => sel[i] === p.answer).length}/6)</Badge>
               <Button variant="outline" size="sm" onClick={() => { setSel({}); setChecked(false); }}><RotateCcw className="mr-1 h-3.5 w-3.5" /> Retry</Button></>}
         </div>
       </CardContent>
@@ -250,29 +252,30 @@ export function HeadingsLab() {
 
 // ================= READING EXERCISES =================
 const EX_TFNG: MCQ[] = [
-  { q: "Passage: 'Desalination plants now supply 12% of the city's water, up from 3% in 2010.' Statement: 'Desalination provides roughly one-eighth of the city's water.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 0, explain: "12% ≈ one-eighth (12.5%). Paraphrased numbers still count as TRUE." },
-  { q: "Same passage. Statement: 'Desalination is cheaper than recycling wastewater.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 2, explain: "No cost comparison appears anywhere — classic NOT GIVEN. Don't use outside knowledge." },
-  { q: "Passage: 'The mayor opposed the plant until 2018, when drought forced approval.' Statement: 'The mayor has always supported desalination.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 1, explain: "'Opposed until 2018' directly contradicts 'always supported' → FALSE." },
-  { q: "Passage: 'All coastal districts receive desalinated water daily.' Statement: 'Some coastal districts receive desalinated water.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 0, explain: "'All receive' logically includes 'some receive' → TRUE. Weaker claims inside stronger ones are TRUE." },
+  { q: "Passage: 'A 2023 Osaka trial grew lettuce under pink LED arrays, yielding 40% more biomass than greenhouse controls, although energy consumption was three times higher. The team tested leafy greens only and cautioned that fruiting crops might respond differently, while noting that no measurements of flavour compounds were taken.' Statement: 'The Osaka trial produced 40% more lettuce than a conventional greenhouse.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 0, explain: "'40% more biomass' of lettuce = 40% more lettuce. Different grammar, same fact → TRUE. Paraphrase is the norm, not word-matching." },
+  { q: "Same passage. Statement: 'The trial demonstrated that vertical farms are more profitable than greenhouses.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 2, explain: "Profitability is never assessed. Higher energy costs SUGGEST otherwise, but suggestions aren't statements — a classic feel-FALSE-actually-NG trap." },
+  { q: "Same passage. Statement: 'Fruiting crops were found to react badly to pink LED light.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 1, explain: "'Might respond differently' (untested, hedged) vs 'were found to react badly' (tested, certain) — the certainty level contradicts → FALSE." },
+  { q: "Same passage. Statement: 'Flavour compounds in the lettuce were left unmeasured.'", options: ["TRUE", "FALSE", "NOT GIVEN"], answer: 0, explain: "'No measurements… were taken' = left unmeasured. Nominalisation ('measurements') hiding a simple verb — typical exam paraphrase." },
 ];
 const EX_YNNG: MCQ[] = [
-  { q: "Author: 'It is often claimed that bees are dying out; the evidence, however, points to redistribution rather than decline.' Statement: 'The writer believes bee decline is overstated.'", options: ["YES", "NO", "NOT GIVEN"], answer: 0, explain: "'Points to redistribution rather than decline' = the author endorses the sceptical view → YES." },
-  { q: "When a question asks 'Do the statements agree with the VIEWS of the writer?', you answer…", options: ["True / False / Not Given", "Yes / No / Not Given", "Either — they are identical"], answer: 1, explain: "Views/claims/arguments → Yes/No/NG. Facts from the text → True/False/NG. Using the wrong set scores zero." },
-  { q: "Passage quotes Dr Lee: 'Cities are unliveable.' The author calls this 'an exaggeration'. Statement: 'The writer considers cities unliveable.'", options: ["YES", "NO", "NOT GIVEN"], answer: 1, explain: "The quoted view is Lee's, and the author rejects it ('exaggeration') → NO." },
+  { q: "Passage: 'Dr Marsh dismisses rewilding Britain as ecological fantasy, insisting reintroduced wolves would devastate livestock. Professor Adeyemi counters that Dutch compensation schemes have contained such losses, though she concedes public fear remains a genuine obstacle. Reviewing both cases, the author concludes that beavers — reintroduced with minimal dispute — expose the exaggeration on each side.' Statement: 'Marsh regards wolves as harmless to farm animals.'", options: ["YES", "NO", "NOT GIVEN"], answer: 1, explain: "Marsh insists wolves would 'devastate livestock' — the statement claims the opposite of his view → NO." },
+  { q: "Same passage. Statement: 'Adeyemi believes public anxiety is entirely baseless.'", options: ["YES", "NO", "NOT GIVEN"], answer: 1, explain: "She calls fear 'a genuine obstacle' — 'entirely baseless' contradicts her concession. Absolutes (entirely/only/always) are the commonest NO-triggers." },
+  { q: "Same passage. Statement: 'The writer suggests both researchers overstate their cases.'", options: ["YES", "NO", "NOT GIVEN"], answer: 0, explain: "'Expose the exaggeration on each side' = both overstate. 'Each side' maps to Marsh and Adeyemi — track WHO the evaluation attaches to." },
 ];
 const EX_ENDINGS: MCQ[] = [
-  { q: "'Green roofs reduce summer cooling costs…' (passage: roofs cut cooling demand by up to 30%)", options: ["…by nearly a third.", "…by tripling energy use.", "…only in winter."], answer: 0, explain: "30% ≈ nearly a third. Grammar fits and the figure matches the text." },
-  { q: "'The 2019 survey of 400 firms found that…' (passage: 60% cited maintenance costs as the barrier)", options: ["…most firms feared upkeep expenses.", "…all firms rejected green roofs.", "…firms preferred higher costs."], answer: 0, explain: "60% = most; 'maintenance costs' paraphrased as 'upkeep expenses'. 'All' contradicts 60%." },
-  { q: "'Unlike solar panels, green roofs…' (passage: unlike panels, roofs also manage stormwater)", options: ["…help absorb heavy rainfall.", "…generate more electricity.", "…require no installation."], answer: 0, explain: "The contrast point is stormwater. B reuses 'electricity' words from the passage as a trap." },
+  { q: "Text: 'Although vertical farms out-yield greenhouses per square metre, their electricity bills render them uncompetitive for staple crops; they remain viable chiefly for high-value leafy greens near cities, where transport savings offset power costs.' Ending for 'Although vertical farms out-yield greenhouses per square metre,…'", options: ["…their power costs make staples uneconomic.", "…they consume less electricity than open fields.", "…staples are their principal product."], answer: 0, explain: "'Render them uncompetitive for staple crops' = make staples uneconomic. B and C each contradict one clause — check EVERY clause, not just the first." },
+  { q: "Same text. Ending for 'Because transport savings offset power costs,…'", options: ["…inner-city leafy greens can pay their way.", "…electricity costs nothing in urban areas.", "…staple crops should relocate indoors."], answer: 0, explain: "'Remain viable chiefly for high-value leafy greens near cities' = inner-city greens pay. B overstates ('nothing'); C reverses the text's verdict on staples." },
+  { q: "Text: 'Unlike advocates who stress yields, the authors maintain that without cheap clean energy, expanding indoor farming would raise emissions.' Ending for 'Unlike advocates, the authors…'", options: ["…warn expansion could increase emissions.", "…endorse the advocates' emphasis.", "…deny that yields are higher indoors."], answer: 0, explain: "The 'unlike' contrast is views, not yields: advocates stress yields, authors warn on emissions. They never dispute the yields — C invents a disagreement." },
 ];
 const EX_SUMMARY: MCQ[] = [
-  { q: "Summary: 'Patients recovered ___ after ten-minute walks.' Passage: 'Brief walks accelerated recovery significantly.' Bank: [rapidly / slowly / expensively / weekly]", options: ["rapidly", "slowly", "expensively", "weekly"], answer: 0, explain: "'Accelerated…significantly' → 'rapidly'. Grammar (adverb) also eliminates nouns." },
-  { q: "Flow-chart: Raw clay → ___ → firing. Passage: 'Clay is first shaped, then dried for 48 hours before firing.'", options: ["shaping", "drying", "cooling", "painting"], answer: 1, explain: "Sequence matters: shaped first, then the step before firing is drying." },
-  { q: "Table gap: 'Maximum nap length: ___ minutes.' Passage: 'Naps exceeding thirty minutes risk sleep inertia.'", options: ["thirty", "thirteen", "three hundred", "three"], answer: 0, explain: "Copy the exact figure. 'Thirty' as a word still respects the limit if instructions allow one word." },
+  { q: "Text: 'Seawater is first forced through intake screens that exclude marine life. It then undergoes pre-treatment, in which chemicals coagulate suspended particles. The clarified water passes to reverse-osmosis membranes at high pressure, producing freshwater plus a concentrated brine that is diluted before discharge.' Flow-chart: Intake screens → [___] → reverse osmosis. Bank: pre-treatment / screening / pressure.", options: ["pre-treatment", "screening", "pressure"], answer: 0, explain: "The stage AFTER intake is pre-treatment. 'Screening' reuses the previous stage's word (same -ing class, wrong position); 'pressure' belongs to the osmosis stage." },
+  { q: "Same text. Flow-chart: brine is [___] before release. Bank: diluted / discharged / dilution.", options: ["diluted", "discharged", "dilution"], answer: 0, explain: "'Is diluted before discharge' — you need the participle 'diluted'. 'Discharged' confuses the two verbs; 'dilution' is the wrong word class for the gap." },
+  { q: "Same text. Gap: 'Suspended particles are removed by [___] during pre-treatment.' Bank: coagulation / membranes / screens.", options: ["coagulation", "membranes", "screens"], answer: 0, explain: "'Chemicals coagulate particles' → nominalised as 'coagulation'. 'Screens' and 'membranes' are real stages — but the WRONG stages for this gap." },
 ];
 const EX_FEATURES: MCQ[] = [
-  { q: "Dr Allen linked city trees to lower asthma rates. Dr Bhatt linked them to cooler streets. Who found the health effect?", options: ["Dr Allen", "Dr Bhatt", "Both", "Neither"], answer: 0, explain: "Asthma = health → Allen. Scan names, read the adjacent claim." },
-  { q: "Which finding belongs to Dr Bhatt?", options: ["Reduced respiratory illness", "Lower street temperatures", "Higher property prices", "Faster traffic flow"], answer: 1, explain: "'Cooler streets' paraphrased as 'lower street temperatures'." },
+  { q: "Text: 'Dr Ito attributes street cooling primarily to transpiration, regarding shade as a secondary effect. Dr Silva disputes this, crediting reflective leaf surfaces instead and judging transpiration's contribution negligible. Dr Okafor, reviewing both studies, finds the mechanisms roughly equal and criticises single-factor explanations on either side.' Who treats shade as the lesser factor?", options: ["Dr Ito", "Dr Silva", "Dr Okafor", "All three"], answer: 0, explain: "Ito: transpiration primary, shade 'secondary'. Scan the NAME, then read the claim attached to it — never match claims to the nearest name." },
+  { q: "Same text. Who considers transpiration negligible?", options: ["Dr Ito", "Dr Silva", "Dr Okafor", "None of them"], answer: 1, explain: "Silva judges transpiration's contribution 'negligible' — then credits reflective surfaces instead. 'Instead' signals the replacement claim." },
+  { q: "Same text. Who attacks one-sided explanations?", options: ["Dr Ito", "Dr Silva", "Dr Okafor", "All three"], answer: 2, explain: "Okafor 'criticises single-factor explanations on either side'. Note 'either side' = both rivals — an evaluation of the DEBATE, not a new finding." },
 ];
 
 export function ReadingExercises({ save, best }: { save: (k: string, s: number) => void; best: Record<string, number> }) {
@@ -295,10 +298,10 @@ export function ReadingExercises({ save, best }: { save: (k: string, s: number) 
 
 // ================= GUIDED READING =================
 const GParas = [
-  { label: "Paragraph A", text: "In the 1990s, city planners treated street trees as decoration — pleasant but expendable when roads needed widening. Hundreds of mature trees were felled each year, and few residents protested.", point: "Old attitude: trees seen as expendable decoration." },
-  { label: "Paragraph B", text: "New measurement tools changed the calculation. A 2018 survey across six cities found streets with dense canopies were on average 2.4°C cooler in summer, and households nearby used 18% less energy for cooling.", point: "Evidence: cooler streets + lower energy use (figures)." },
-  { label: "Paragraph C", text: "Health researchers added a second argument. Children living within 300 metres of green space showed markedly lower asthma rates, a result replicated in three countries. Critics note that wealthier areas have both more trees and better healthcare, so causation remains debated.", point: "Health claim + the counter-argument (evaluative — classic Yes/No/NG territory)." },
-  { label: "Paragraph D", text: "Policy has followed the evidence, unevenly. Some councils now protect every tree above a set trunk size, while others still approve removals for development. The trend, however, is clearly toward preservation.", point: "Mixed current policy, overall direction = preservation." },
+  { label: "Paragraph A", text: "In the 1990s, municipal planners regarded street trees as ornament — agreeable but ultimately expendable when carriageways needed widening. Hundreds of mature specimens were felled annually with scant public objection, for canopy cover was then measured, if at all, in aesthetic rather than economic or medical terms.", point: "Old attitude: trees as expendable ornament; value seen as aesthetic only." },
+  { label: "Paragraph B", text: "Calibrated measurement has since altered the arithmetic. A 2018 survey spanning six cities found that densely canopied streets averaged 2.4°C cooler at summer peaks, with adjacent households consuming 18% less electricity for cooling — savings that, aggregated city-wide, run into millions.", point: "Hard evidence: 2.4°C cooler, 18% less cooling energy (figures)." },
+  { label: "Paragraph C", text: "Medical researchers have supplied a second, more contested rationale. Cohorts of children residing within 300 metres of substantial greenery exhibit markedly lower asthma prevalence, a pattern replicated across three countries. Sceptics reply that leafier districts also tend to be wealthier, with superior healthcare access, leaving causation stubbornly unresolved.", point: "Health claim PLUS the counter-argument (wealth confound) — evaluative territory." },
+  { label: "Paragraph D", text: "Legislation has trailed the evidence, and patchily. A handful of councils now prohibit felling above a stipulated trunk diameter, yet exemptions for development remain generous and enforcement budgets thin. The direction of travel, nevertheless, points unmistakably toward preservation.", point: "Uneven policy today, but overall direction = preservation." },
 ];
 
 export function ReadingGuided() {
@@ -348,40 +351,43 @@ export function ReadingGuided() {
 
 // ================= READING MOCK =================
 const MOCK_HEADINGS = [
-  "i. Economic arguments for green space",
-  "ii. A mistaken belief about city history",
-  "iii. Health effects beyond exercise",
-  "iv. Cooling the urban heat island",
-  "v. Policy shifts toward preservation",
-  "vi. Wildlife corridors in suburbs",
-  "vii. The chemistry of tree leaves",
+  "i. A brightening planet, measured from orbit",
+  "ii. How light resets the body's clockwork",
+  "iii. Shift work and the cancer question",
+  "iv. Casualties beyond our own species",
+  "v. Efficient lamps with hidden costs",
+  "vi. Gaps in what science can say",
+  "vii. The history of gas street lighting",
+  "viii. Treating sleep disorders with light therapy",
 ];
 const MOCK_PARAS = [
-  { label: "Paragraph A", text: "Contrary to popular belief, most great cities were never concrete from edge to edge. Nineteenth-century maps of London, Paris and Beijing show orchards, commons and market gardens woven between streets. The treeless city is a twentieth-century invention, born of road-building and a belief that greenery wasted valuable land." },
-  { label: "Paragraph B", text: "The physics is now well measured. Vegetation cools through shade and transpiration: a single mature tree can transpire over 400 litres of water on a hot day. Districts with dense canopy cover record summer temperatures up to 3°C lower than bare neighbourhoods nearby." },
-  { label: "Paragraph C", text: "The benefits extend beyond temperature. Hospital patients with views of trees require fewer painkillers and leave wards sooner, while office workers near parks report lower stress. Researchers stress these are correlations with plausible mechanisms, not proof of cure." },
-  { label: "Paragraph D", text: "Money follows measurement. A landmark valuation estimated that London's trees save the city over £100 million yearly in cooling, flood prevention and air filtration. Developers, once hostile, now advertise proximity to canopy cover as a selling point." },
-  { label: "Paragraph E", text: "Regulation is catching up, patchily. Several councils have introduced fines for felling above a trunk threshold, yet exemptions for construction remain wide. Enforcement is thin, but the legal direction is unmistakable: removal is increasingly the exception." },
+  { label: "Paragraph A", text: "Four-fifths of humanity now live beneath light-polluted skies, and the glow is intensifying. Analysing satellite imagery from 2012 to 2016, Kyba and colleagues calculated that artificially lit surfaces were expanding by 2.2% each year — and ground-based photometers suggest even this understates the trend, since older sensors are blind to the blue-rich LEDs now dominating street lighting. Darkness, by this measure, is receding on every inhabited continent." },
+  { label: "Paragraph B", text: "The human body reads this glow as information. Intrinsically photosensitive cells in the retina signal the brain's master clock, suppressing the sleep hormone melatonin — an effect strongest for short-wavelength blue light. The 2017 Nobel Prize in Physiology honoured Hall, Rosbash and Young for unravelling the molecular feedback loops behind such rhythms, work revealing clock genes ticking in nearly every tissue, from liver to skin." },
+  { label: "Paragraph C", text: "Epidemiology has linked chronic exposure to harm, most contentiously through night-shift labour. Citing cohort studies of nurses, the International Agency for Research on Cancer classifies night-shift work as 'probably carcinogenic' — Group 2A, reaffirmed in 2019 — yet the associated risks are modest, on the order of a 20% elevation, and entangled with confounders: shift workers smoke more, exercise less and tend to be poorer. Whether light itself, or the lifestyle accompanying it, drives the association remains vigorously disputed." },
+  { label: "Paragraph D", text: "Other species fare no better, sometimes worse. Moths spiral around lamps until exhausted; hatchling sea turtles, evolved to scuttle toward moonlit surf, instead wander inland toward coastal glow; dung beetles, which steer by the Milky Way, lose their compass under skyglow. Each mechanism is documented in field experiments, though what these individual misfortunes mean for whole populations is, researchers admit, largely unquantified." },
+  { label: "Paragraph E", text: "The current transition to LEDs sharpens every dilemma. Municipalities have halved their lighting energy bills by adopting diodes, accelerating the rollout — yet diode spectra peak precisely in the blue band that most suppresses melatonin and most disorients insects. Remedies exist: shielding that aims light downward, dimming after midnight, amber-shifted lamps. As the physicist Hölker observes, societies could retain illumination while discarding much of its glow; that they rarely do is attributed principally to cost." },
+  { label: "Paragraph F", text: "Fundamental uncertainties persist. No regulatory body has fixed a threshold dose below which night-time light is deemed safe, and laboratory exposures typically dwarf real-world levels, limiting how far findings generalise. Sensitivity further varies with age and chronotype — self-described night owls appear somewhat less perturbed. Until longitudinal studies mature, official guidance rests explicitly on precaution rather than proof." },
 ];
-const MOCK_HEAD_ANS = [1, 3, 2, 0, 4];
+const MOCK_HEAD_ANS = [0, 1, 2, 3, 4, 5];
 const MOCK_HEAD_WHY = [
-  "A corrects a belief ('contrary to popular belief… treeless city is an invention') — heading ii. History detail, not policy.",
-  "B is physics/measurement of cooling (3°C) — heading iv. Money appears nowhere here.",
-  "C goes beyond temperature into hospitals/stress — heading iii ('beyond exercise'). Note the caution about proof — evaluative detail.",
-  "D values trees in pounds and developer behaviour — heading i (economic). Cooling/flood figures are supporting details.",
-  "E is councils, fines, exemptions — heading v. Two distractors (vi wildlife, vii chemistry) are never used.",
+  "A quantifies planetary brightening (four-fifths, 2.2% yearly, satellites vs ground sensors) — heading i. The LED-sensor detail tempts heading v, but lamps are evidence here, not the topic.",
+  "B explains the retinal–melatonin mechanism and clock genes — heading ii. The Nobel is supporting prestige, not history (vii); therapy (viii) is never mentioned.",
+  "C weighs shift-work cancer evidence with confounders and dispute — heading iii. The '20% elevation' and 'probably' qualifiers are detail, not the main idea.",
+  "D catalogues moths, turtles and beetles — harm beyond humans — heading iv. Population effects being 'unquantified' is the paragraph's honest coda, reused in Q10.",
+  "E contrasts LED savings against blue-spectrum costs plus remedies — heading v. Hölker's quote supports the cost verdict; it is not the paragraph's subject.",
+  "F inventories unknowns (no threshold, lab-vs-world gap, chronotypes) — heading vi. Precaution-vs-proof is the closing line, not a separate topic.",
 ];
 const MOCK_TFNG = [
-  { q: "6. Nineteenth-century cities contained no significant greenery.", a: "FALSE", w: "Paragraph A: orchards, commons and gardens were 'woven between streets' — direct contradiction." },
-  { q: "7. A single tree can release more than 300 litres of water on a hot day.", a: "TRUE", w: "Paragraph B: 'over 400 litres' — 400 > 300, so TRUE." },
-  { q: "8. Researchers have proven that views of trees cure illness.", a: "FALSE", w: "Paragraph C: 'not proof of cure' — 'cure' contradicts the text's caution." },
-  { q: "9. London's trees are worth exactly £100 million per year.", a: "FALSE", w: "Paragraph D: 'over £100 million' — 'exactly' contradicts 'over'." },
+  { q: "7. Between 2012 and 2016, lit surfaces worldwide expanded by about 2% per year.", a: "TRUE", w: "Paragraph A: 2.2% yearly — 'about 2%' is legitimate approximation. Examiners accept rounded paraphrase as TRUE." },
+  { q: "8. The 2017 Nobel Prize in Physiology honoured research into nurses' working hours.", a: "FALSE", w: "Paragraph B: the prize honoured molecular clockwork (Hall, Rosbash, Young). Nurses appear only in paragraph C's cancer cohorts — a cross-paragraph decoy." },
+  { q: "9. Scientists have established a precise safe limit for night-time light exposure.", a: "FALSE", w: "Paragraph F: no body 'has fixed a threshold dose'. 'Precise safe limit' directly contradicts this." },
+  { q: "10. Skyglow has been shown to shrink overall moth populations.", a: "NOT GIVEN", w: "Paragraph D documents exhausted individuals but states population consequences are 'largely unquantified'. Plausible, suggestive — but unstated. Feel-TRUE, actually-NG." },
 ];
 const MOCK_COMP = [
-  { q: "10. Bare neighbourhoods can be up to ___ hotter than leafy districts.", opts: ["3°C", "400 litres", "£100 million", "300 metres"], a: 0, w: "Paragraph B: 'up to 3°C lower' — leafy cooler = bare hotter by 3°C." },
-  { q: "11. Hospital patients overlooking trees needed ___ painkillers.", opts: ["more", "fewer", "stronger", "imported"], a: 1, w: "Paragraph C: 'require fewer painkillers'." },
-  { q: "12. Developers now use nearby trees as a ___ when selling homes.", opts: ["selling point", "legal obstacle", "construction cost", "felling fine"], a: 0, w: "Paragraph D: 'advertise proximity… as a selling point'." },
-  { q: "13. Councils punish unauthorised felling with ___.", opts: ["rewards", "exemptions", "fines", "praise"], a: 2, w: "Paragraph E: 'introduced fines for felling'." },
+  { q: "11. Melatonin is most strongly suppressed by ___ wavelengths.", opts: ["short blue", "long red", "green", "infrared"], a: 0, w: "Paragraph B: 'strongest for short-wavelength blue light'. Note 'short' modifies the wavelength, not the duration." },
+  { q: "12. The WHO agency regards night-shift work as ___ carcinogenic to humans.", opts: ["probably", "certainly", "possibly", "unlikely to be"], a: 0, w: "Paragraph C: Group 2A = 'probably carcinogenic'. 'Possibly' (Group 2B) is the planted near-miss — precision with qualifiers scores." },
+  { q: "13. Dung beetles navigate using the ___.", opts: ["Milky Way", "moon", "sun", "magnetic field"], a: 0, w: "Paragraph D: beetles 'steer by the Milky Way'. The moon belongs to the TURTLES' sentence — a deliberate cross-detail trap." },
+  { q: "14. Official guidance on night lighting currently rests on ___ rather than conclusive evidence.", opts: ["precaution", "profit", "tradition", "guesswork"], a: 0, w: "Paragraph F: 'rests explicitly on precaution rather than proof'. 'Guesswork' editorialises — the text's own noun is 'precaution'." },
 ];
 
 export function ReadingMock() {
@@ -405,18 +411,18 @@ export function ReadingMock() {
   const total = useMemo(() => {
     let c = 0;
     MOCK_HEAD_ANS.forEach((a, i) => { if (heads[i] === a) c++; });
-    const tfAns = ["FALSE", "TRUE", "FALSE", "FALSE"];
+    const tfAns = ["TRUE", "FALSE", "FALSE", "NOT GIVEN"];
     tfAns.forEach((a, i) => { if (tfng[i] === a) c++; });
     MOCK_COMP.forEach((q, i) => { if (comp[i] === q.a) c++; });
     return c;
   }, [heads, tfng, comp]);
 
-  const band = total >= 12 ? "≈ Band 8.0–9.0 pace" : total >= 10 ? "≈ Band 7.0–7.5 pace" : total >= 8 ? "≈ Band 6.0–6.5 pace" : "Below 6.0 pace — review methods";
+  const band = total >= 13 ? "≈ Band 8.0–9.0 pace" : total >= 11 ? "≈ Band 7.0–7.5 pace" : total >= 9 ? "≈ Band 6.0–6.5 pace" : "Below 6.0 pace — review methods";
 
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <div><h2 className="font-serif text-2xl font-bold">Reading mock — 1 passage, 13 questions</h2>
+        <div><h2 className="font-serif text-2xl font-bold">Reading mock — 1 passage, 14 questions</h2>
           <p className="text-sm text-stone-500">Full test = 3 passages / 40 questions / 60 min. This is one passage at exam pace (20 min).</p></div>
         <Card className={cn("border px-4 py-2", secs < 300 ? "border-red-400 bg-red-50" : "border-stone-200 bg-white")}>
           <p className="flex items-center gap-2 font-mono text-2xl font-bold"><Clock className="h-5 w-5" /> {mm}:{ss}</p>
@@ -429,7 +435,7 @@ export function ReadingMock() {
       </div>
 
       <Card className="mt-3 border-stone-200">
-        <CardHeader><CardTitle className="text-lg">The Return of Urban Green Space</CardTitle><CardDescription>Read the passage, then answer Questions 1–13.</CardDescription></CardHeader>
+        <CardHeader><CardTitle className="text-lg">Losing the Night: Artificial Light and Health</CardTitle><CardDescription>Read the passage, then answer Questions 1–14.</CardDescription></CardHeader>
         <CardContent className="space-y-2.5">{MOCK_PARAS.map(p => (
           <div key={p.label} className="rounded-md bg-stone-50 p-2.5 text-sm leading-relaxed"><p className="text-xs font-bold uppercase tracking-wide text-stone-500">{p.label}</p><p className="mt-0.5">{p.text}</p></div>
         ))}</CardContent>
@@ -437,7 +443,7 @@ export function ReadingMock() {
 
       <div className="mt-3 grid gap-3 lg:grid-cols-2">
         <div className="space-y-3">
-          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base flex items-center gap-2"><Heading className="h-4 w-4" /> Questions 1–5 · Match headings</CardTitle></CardHeader>
+          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base flex items-center gap-2"><Heading className="h-4 w-4" /> Questions 1–6 · Match headings</CardTitle></CardHeader>
             <CardContent className="space-y-3">
               <div className="rounded-md bg-stone-100 p-2 text-xs"><strong>Bank:</strong> {MOCK_HEADINGS.join(" · ")}</div>
               {MOCK_PARAS.map((p, i) => (
@@ -452,7 +458,7 @@ export function ReadingMock() {
                 </div>
               ))}
             </CardContent></Card>
-          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base">Questions 6–9 · TRUE / FALSE / NOT GIVEN</CardTitle></CardHeader>
+          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base">Questions 7–10 · TRUE / FALSE / NOT GIVEN</CardTitle></CardHeader>
             <CardContent className="space-y-3">{MOCK_TFNG.map((q, i) => (
               <div key={i}><p className="text-sm font-semibold">{q.q}</p>
                 <div className="mt-1 flex gap-1.5">{["TRUE", "FALSE", "NOT GIVEN"].map(o => (
@@ -463,7 +469,7 @@ export function ReadingMock() {
             ))}</CardContent></Card>
         </div>
         <div className="space-y-3">
-          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base">Questions 10–13 · Sentence completion</CardTitle><CardDescription>Choose the correct option for each.</CardDescription></CardHeader>
+          <Card className="border-stone-200"><CardHeader><CardTitle className="text-base">Questions 11–14 · Sentence completion</CardTitle><CardDescription>Choose the correct option for each.</CardDescription></CardHeader>
             <CardContent className="space-y-3">{MOCK_COMP.map((q, i) => (
               <div key={i}><p className="text-sm font-semibold">{q.q}</p>
                 <div className="mt-1 space-y-1">{q.opts.map((o, j) => (
@@ -475,13 +481,13 @@ export function ReadingMock() {
           <Card className="border-stone-200"><CardHeader><CardTitle className="text-base">Score</CardTitle></CardHeader>
             <CardContent>
               {!checked ? (
-                <Button className="bg-stone-900" disabled={Object.keys(heads).length + Object.keys(tfng).length + Object.keys(comp).length < 13}
+                <Button className="bg-stone-900" disabled={Object.keys(heads).length + Object.keys(tfng).length + Object.keys(comp).length < 14}
                   onClick={() => { setChecked(true); setRunning(false); }}>Mark my test</Button>
               ) : (
                 <>
-                  <p className="flex items-center gap-2 font-serif text-2xl font-bold"><Award className="h-6 w-6 text-amber-600" /> {total} / 13</p>
+                  <p className="flex items-center gap-2 font-serif text-2xl font-bold"><Award className="h-6 w-6 text-amber-600" /> {total} / 14</p>
                   <div className="mt-1 text-sm"><Badge className="bg-teal-700">{band}</Badge></div>
-                  <div className="mt-2 rounded-md bg-stone-100 p-2 text-xs">Full-test guide (40 Q): 30+ ≈ 7.0 · 33+ ≈ 7.5 · 35+ ≈ 8.0. This 13-question set scales the same way: 10+/13 ≈ Band 7 pace.</div>
+                  <div className="mt-2 rounded-md bg-stone-100 p-2 text-xs">Full-test guide (40 Q): 30+ ≈ 7.0 · 33+ ≈ 7.5 · 35+ ≈ 8.0. This 14-question set scales the same way: 11+/14 ≈ Band 7 pace.</div>
                   <Button variant="outline" size="sm" className="mt-2" onClick={() => { setHeads({}); setTfng({}); setComp({}); setChecked(false); }}><RotateCcw className="mr-1 h-3.5 w-3.5" /> Retry</Button>
                 </>
               )}
